@@ -30,9 +30,38 @@ form.addEventListener("submit", e=>{
     }
 })
 
+//USUARIO INGRESA CON CLICK EN EL BOTON "INGRESAR"
 let miBoton=document.getElementById("miBoton");
 miBoton.addEventListener("click",entrar);
 function entrar(){
     window.location="ingreso.html";
-    alert("Ingresaras a Clean");
+}
+
+
+
+
+//USUARIO ENVIA SUS DATOS PERSONALES Y SE ENVIA UN POST A PLACEHOLDER A TRAVES DE CONSOLA
+let miBoton22=document.getElementById("miBoton22");
+miBoton22.addEventListener("click",enviarDatos);
+function enviarDatos(){
+    const URLPOST="https://jsonplaceholder.typicode.com/posts";
+    const nuevoPost={
+        userId:1,
+        id:290,
+        title:"Probando el formulario",
+        body:"datos personales"
+    }
+    fetch(URLPOST,{
+        method:'POST',
+        body:JSON.stringify(nuevoPost),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+        .then( respuesta => respuesta.json())
+        .then( datos => {
+            //lo que retorna
+            console.log("Datos retornados por jsonplaceholder: ");
+            console.log(datos);
+        })
 }
